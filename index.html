@@ -1,0 +1,164 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>JS UI Framework Smackdown! - None of the Above</title><link rel="stylesheet" type="text/css" href="bower_components/prism/prism-tomorrow.css"><link rel="stylesheet" type="text/css" href="styles/main.css"><body><article><section><h1>Javascript <span class="orange">UI </span><span>Faceoff!</span></h1><h2 class="orange">None of the Above</h2></section><section><hr><h1 class="huge">WHO <span class="orange">AM </span><span>I?</span></h1><h2>Tommy-Carlos Williams </h2><hr><h2><a href="mailto:tommy@devgeeks.org">tommy@devgeeks.org</a></h2><hr><h2><a href="http://twitter.com/theRealDevgeeks">@theRealDevgeeks</a></h2><hr><h2><a href="http://blog.devgeeks.org">http://blog.devgeeks.org</a></h2><h2><a href="http://github.com/devgeeks">http://github.com/devgeeks</a></h2></section><section><h1>It's <span class="orange">Not </span><span>As </span><span class="orange">Hard </span></h1><h1>As You <span class="orange">Think  </span></h1><h2 class="bullet">It comes down to:</h2><ul><li>HTML markup like any single page app</li><li>Setting a simple base CSS for mobile devices</li><li>Making your "pages" fit the screen</li><li>Any "fixed" items like NavBars or TabBars</li><li>Scrolling the content in the middle</li><li>Navigation (with or without transitions)</li><li>Forms (not covered here, but not that hard)</li></ul></section><section><h1><span class="orange">Meta </span><span>Tags</span><hr></h1><code class="language-none"><pre>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;meta name = &quot;format-detection&quot; content = &quot;telephone=no&quot;/&gt;
+&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot;&gt;
+&lt;meta name=&quot;viewport&quot; 
+  content=&quot;user-scalable=no, initial-scale=1, maximum-scale=1, 
+    minimum-scale=1, width=device-width&quot; /&gt;
+    </pre></code></section><section><h1>A  <span class="orange">Simple </span><span>Base</span></h1><h2>Some sane defaults</h2><code class="language-css"><pre>/* GENERAL */
+body {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  font-family: &quot;Roboto&quot;, &quot;HelveticaNeue&quot;, Helvetica, Arial, sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+</pre></code></section><section><h1>The <span class="orange">App</span></h1><h2>Use the full screen</h2><code class="language-css"><pre>/* APP */
+.app {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  position:absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+
+</pre></code></section><section><h1>A Basic "<span class="orange">Page</span><span>"</span></h1><h2>Full screen, but <span class="orange">padded</span><span>, </span></h2><h2>and overflow is <span class="orange">not </span><span>hidden</span></h2><code class="language-css"><pre>/* PAGES */
+.page {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  position: absolute;
+  left: 0; right: 0; bottom: 0; top: 44px;
+  padding: 10px;
+  background-color: #fff;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}</pre></code><hr><h3>Note: top is 44px to leave room for the NavBar</h3></section><section><h1>Adding A <span class="orange">NavBar</span></h1><h2>Absolutely postioned, styled to taste</h2><code class="language-css"><pre>/* NAVBAR */
+.navbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 44px;
+  color: #666;
+  background-color: #ddd;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+.navbar .title {
+  position: absolute;
+  left: 44px;
+  right: 44px;
+  text-align: center;
+  font-size: 150%;
+  margin: 8px;
+  font-weight: bold;
+}
+</pre></code></section><section><h1>NavBar <span class="orange">Buttons</span></h1><code class="language-css"><pre>/* NAVBAR BUTTONS */
+.navbar .button {
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  top: 0; bottom: 0;
+}
+.navbar .button a {
+  display: block;
+  text-align: center;
+  font-size: 150%;
+  font-weight: bolder;
+  height: 39px;
+  padding-top: 5px;
+}
+.navbar .button a:active {
+  background-color: #ccc;
+}</pre></code><hr><h3>Note: There are also some generic .button-left and .button-right styles needed</h3></section><section><h1>Other <span class="orange">Buttons</span></h1><code class="language-css"><pre>a.button {
+  position: relative; display: block;
+  padding: 10px; margin: 10px;
+  background-color: #ddd;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  border-radius: 1px;
+}
+a.button:active {
+  background-color: #ccc;
+  border: 1px solid rgba(0,0,0,0); /* clear */
+}
+.button-left {
+  left: 0;
+  border-right: 1px solid #ccc;
+}
+.button-right {
+  right: 0;
+  border-left: 1px solid #ccc;
+}
+</pre></code></section><section><h1>Scrolling</h1><h2>As <span class="orange">simple</span><span>* as:</span></h2><code class="language-css"><pre>overflow: auto;
+-webkit-overflow-scrolling: touch;</pre></code><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><h3>*Nothing is really simple, on Android pre v3 this is not supported</h3></section><section><h1>Page Navigation</h1><h2 class="orange">with CSS transitions</h2><h3>Here is where it gets fun</h3></section><section><h1>Page Navigation</h1><h2 class="orange">CSS</h2><code class="language-css"><pre>.page.current {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.page.left {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+.page.right {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+.page.transition {
+  -webkit-transition-duration: .2s;
+  transition-duration: .2s;
+}
+</pre></code></section><section><h1>Page Navigation</h1><h2 class="orange">JavaScript</h2><code class="language-javascript"><pre>var homePage = document.getElementById(&quot;homePage&quot;),
+  newPage = document.getElementById(&quot;newPage&quot;);
+// Position the page at the starting position of the animation
+newPage.className = &quot;page right&quot;;
+// Position page at ending position of animation and add transition-duration
+newPage.className =&quot;page transition center&quot;;
+// Simultaneously slide out the current page to the left of the viewport
+homePage.className = &quot;page transition left&quot;;
+</pre></code></section><section><h1>Page Navigation</h1><h2><span class="orange">Wiring </span><span>to a "</span><span class="orange">click</span><span>"</span></h2><code class="language-javascript"><pre>var navigateToAnotherPage = function(event) {
+  event.preventDefault();
+  var currentPage = document.querySelector(&quot;.current&quot;),
+    newPage = document.getElementById(this.hash.substring(1)),
+  newPage.className = &quot;page right&quot;;
+  newPage.className =&quot;page transition current&quot;;
+  currentPage.className = &quot;page transition left&quot;;
+};
+
+var secondPageButton = document.getElementById(&quot;toSecondPage&quot;);
+
+secondPageButton.addEventListener(
+  &quot;click&quot;, // ...or &quot;tap&quot;/&quot;touchend&quot;? We'll get to that...
+  navigateToAnotherPage,
+  false
+);</pre></code><hr><h3>Note: this can be made a great deal simpler using Zepto or jQuery ...or even better, something like Backbone.js</h3></section><section><h1>Avoiding The <span class="orange">300ms </span><span>"click" Delay</span></h1><h2>Use "<span class="orange">touchend</span><span>" instead</span></h2><hr><hr><h2>Or use a lib like <a href="http://zeptojs.com/">Zepto</a>, <a href="http://labs.ft.com/articles/ft-fastclick/">Fastclick</a>, etc</h2></section><section><h1>But Now I'm <span class="orange">STUCK!</span></h1><h2>Getting <span class="orange">Back</span></h2><code class="language-javascript"><pre>var navigateBackToAnotherPage = function(event) {
+  event.preventDefault();
+  var currentPage = document.querySelector(&quot;.current&quot;),
+    newPage = document.getElementById(this.hash.substring(1)),
+  newPage.className = &quot;page left&quot;;
+  newPage.className =&quot;page transition current&quot;;
+  currentPage.className = &quot;page transition right&quot;;
+};
+</pre></code></section><section><h1>A  <span class="orange">Back </span><span>Button</span></h1><h2 class="orange">CSS</h2><code class="language-javascript"><pre>var previousPage;
+var navigateBack = function(event) {
+  event.preventDefault();
+  if (previousPage) {
+    var currentPage = document.querySelector(&quot;.current&quot;),
+      newPage = document.getElementById(previousPage),
+      backButton = document.getElementById(&quot;backButton&quot;),
+      menuButton = document.getElementById(&quot;menuButton&quot;);
+    menuButton.className = &quot;button button-left menu&quot;;
+    backButton.className = &quot;button button-left back hidden&quot;;
+    newPage.className = &quot;page left&quot;;
+    newPage.className =&quot;page transition current&quot;;
+    currentPage.className = &quot;page transition right&quot;;
+  }
+};
+// Set previosPage to the element id of the previous page when navigating forward</pre></code><hr><h3>Note: to go more than one level deep and back, make sure previousPage is more like an Array you can pop off one at a time</h3></section><section><h1>End <span class="orange">Result </span><span>*</span></h1><img src="images/final-app.png" width="300px"><a href="http://jsbin.com/noneoftheabove/39/">http://jsbin.com/noneoftheabove/39/</a><h3>* I know it doesn't look like much, but it only took 2 hours...</h3></section><section><h1 class="bullet"><span class="orange">Extra </span><span>Credit</span></h1><ul><li>Slide Menu</li><li>Navigating via the list</li><li>Changing the title based on current page</li><li>Modularisation / MVC </li><li>???</li><li>Profit</li></ul></section><section><h1>Pure <span class="orange">CSS  </span><span>Frameworks</span></h1><hr><hr><h2>TopCoat - <a href="http://topcoat.io">http://topcoat.io</a></h2><h2>Bootstrap - <a href="http://getbootstrap.com">http://getbootstrap.com </a></h2></section><section><h1 class="orange huge">Thanks!</h1><hr><h2>Feel free to ask me any PhoneGap / Cordova questions you may have as long as they have nothing to do with jQuery Mobile.</h2><hr><hr><h2>Just kidding. *</h2><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr><hr>* I'm totally not kidding...</section></article><script src="bower_components/bespoke.js/dist/bespoke.min.js"></script><script src="bower_components/bespoke-bullets/dist/bespoke-bullets.min.js"></script><script src="bower_components/bespoke-hash/dist/bespoke-hash.min.js"></script><script src="bower_components/bespoke-state/dist/bespoke-state.min.js"></script><script src="bower_components/prism/prism.js"></script><script src="scripts/main.js"></script></body></head></html>
