@@ -1,0 +1,427 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title JS UI Framework Smackdown! - None of the Above
+
+    //- Check out 'src/bower_components/prism/' for available themes
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/prism-tomorrow.css')
+
+    link(rel='stylesheet', type='text/css', href='styles/main.css')
+
+    body
+
+      article
+
+        section
+          h1 Javascript 
+            span.orange UI 
+            span Faceoff!
+          h2.orange None of the Above
+
+        section
+          hr
+          h1.huge WHO 
+            span.orange AM 
+            span I?
+          h2 Tommy-Carlos Williams 
+          hr
+          h2
+            a(href='mailto:tommy@devgeeks.org') tommy@devgeeks.org
+          hr
+          h2
+            a(href='http://twitter.com/theRealDevgeeks') @theRealDevgeeks
+          hr
+          h2
+            a(href='http://blog.devgeeks.org') http://blog.devgeeks.org
+          h2
+            a(href='http://github.com/devgeeks') http://github.com/devgeeks
+        
+        section
+          h1 It's 
+            span.orange Not 
+            span As 
+            span.orange Hard 
+          h1 As You 
+            span.orange Think  
+          h2.bullet It comes down to:
+          ul
+            li HTML markup like any single page app
+            li Setting a simple base CSS for mobile devices
+            li Making your "pages" fit the screen
+            li Any "fixed" items like NavBars or TabBars
+            li Scrolling the content in the middle
+            li Navigation (with or without transitions)
+            li Forms (not covered here, but not that hard)
+
+        section
+          h1
+            span.orange Meta 
+            span Tags
+            hr
+          code.language-none
+            pre.
+              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+              <meta name = "format-detection" content = "telephone=no"/>
+              <meta name="apple-mobile-web-app-capable" content="yes">
+              <meta name="viewport" 
+                content="user-scalable=no, initial-scale=1, maximum-scale=1, 
+                  minimum-scale=1, width=device-width" />
+
+        section
+          h1 A  
+            span.orange Simple 
+            span Base
+          h2 Some sane defaults
+          code.language-css
+            pre.
+              /* GENERAL */
+              body {
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+                -webkit-touch-callout: none;
+                -webkit-text-size-adjust: none;
+                -webkit-user-select: none;
+                user-select: none;
+                font-size: 100%;
+                padding: 0;
+                margin: 0;
+                background-color: #fff;
+                font-family: "Roboto", "HelveticaNeue", Helvetica, Arial, sans-serif;
+              }
+              a {
+                text-decoration: none;
+                color: inherit;
+              }
+
+        section
+          h1 The 
+            span.orange App
+          h2 Use the full screen
+          code.language-css
+            pre.
+              /* APP */
+              .app {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                position:absolute;
+                left: 0; top: 0; right: 0; bottom: 0;
+                overflow: hidden;
+              }
+
+
+        section
+          h1 A Basic "
+            span.orange Page
+            span "
+          h2 Full screen, but 
+            span.orange padded
+            span , 
+          h2 and overflow is 
+            span.orange not 
+            span hidden
+          code.language-css
+            pre.
+              /* PAGES */
+              .page {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                position: absolute;
+                left: 0; right: 0; bottom: 0; top: 44px;
+                padding: 10px;
+                background-color: #fff;
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+              }
+          hr
+          h3 Note: top is 44px to leave room for the NavBar
+
+        section
+          h1 Adding A 
+            span.orange NavBar
+          h2 Absolutely postioned, styled to taste
+          code.language-css
+            pre.
+              /* NAVBAR */
+              .navbar {
+                position: absolute;
+                top: 0; left: 0; right: 0;
+                height: 44px;
+                color: #666;
+                background-color: #ddd;
+                box-shadow: 0 0 8px rgba(0,0,0,0.3);
+                z-index: 1;
+              }
+              .navbar .title {
+                position: absolute;
+                left: 44px;
+                right: 44px;
+                text-align: center;
+                font-size: 150%;
+                margin: 8px;
+                font-weight: bold;
+              }
+
+        section
+          h1 NavBar 
+            span.orange Buttons
+          code.language-css
+            pre.
+              /* NAVBAR BUTTONS */
+              .navbar .button {
+                width: 44px;
+                height: 44px;
+                position: absolute;
+                top: 0; bottom: 0;
+              }
+              .navbar .button a {
+                display: block;
+                text-align: center;
+                font-size: 150%;
+                font-weight: bolder;
+                height: 39px;
+                padding-top: 5px;
+              }
+              .navbar .button a:active {
+                background-color: #ccc;
+              }
+          hr
+          h3 Note: There are also some generic .button-left and .button-right styles needed
+
+        section
+          h1 Other 
+            span.orange Buttons
+          code.language-css
+            pre.
+              a.button {
+                position: relative; display: block;
+                padding: 10px; margin: 10px;
+                background-color: #ddd;
+                text-align: center;
+                border: 1px solid rgba(0,0,0,0.1);
+                border-top: 1px solid rgba(255,255,255,0.4);
+                border-bottom: 1px solid rgba(0,0,0,0.5);
+                border-radius: 1px;
+              }
+              a.button:active {
+                background-color: #ccc;
+                border: 1px solid rgba(0,0,0,0); /* clear */
+              }
+              .button-left {
+                left: 0;
+                border-right: 1px solid #ccc;
+              }
+              .button-right {
+                right: 0;
+                border-left: 1px solid #ccc;
+              }
+
+        section
+          h1 Scrolling
+          h2 As 
+            span.orange simple
+            span * as:
+          code.language-css
+            pre.
+              overflow: auto;
+              -webkit-overflow-scrolling: touch;
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          h3 *Nothing is really simple, on Android pre v3 this is not supported
+        
+        section
+          h1 Page Navigation
+          h2.orange with CSS transitions
+          h3 Here is where it gets fun
+
+        section
+          h1 Page Navigation
+          h2.orange CSS
+          code.language-css
+            pre.
+              .page.current {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+              }
+              .page.left {
+                -webkit-transform: translate3d(-100%, 0, 0);
+                transform: translate3d(-100%, 0, 0);
+              }
+              .page.right {
+                -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+              }
+              .page.transition {
+                -webkit-transition-duration: .2s;
+                transition-duration: .2s;
+              }
+
+        section
+          h1 Page Navigation
+          h2.orange JavaScript
+          code.language-javascript
+            pre.
+              var homePage = document.getElementById("homePage"),
+                newPage = document.getElementById("newPage");
+              // Position the page at the starting position of the animation
+              newPage.className = "page right";
+              // Position page at ending position of animation and add transition-duration
+              newPage.className ="page transition center";
+              // Simultaneously slide out the current page to the left of the viewport
+              homePage.className = "page transition left";
+
+        section
+          h1 Page Navigation
+          h2
+            span.orange Wiring 
+            span to a "
+            span.orange click
+            span "
+          code.language-javascript
+            pre.
+              var navigateToAnotherPage = function(event) {
+                event.preventDefault();
+                var currentPage = document.querySelector(".current"),
+                  newPage = document.getElementById(this.hash.substring(1)),
+                newPage.className = "page right";
+                newPage.className ="page transition current";
+                currentPage.className = "page transition left";
+              };
+
+              var secondPageButton = document.getElementById("toSecondPage");
+
+              secondPageButton.addEventListener(
+                "click", // ...or "tap"/"touchend"? We'll get to that...
+                navigateToAnotherPage,
+                false
+              );
+          hr
+          h3 Note: this can be made a great deal simpler using Zepto or jQuery ...or even better, something like Backbone.js
+
+
+        section
+          h1 Avoiding The 
+            span.orange 300ms 
+            span "click" Delay
+          h2 Use "
+            span.orange touchend
+            span " instead
+          hr
+          hr
+          h2 Or use a lib like 
+            a(href="http://zeptojs.com/") Zepto
+            , 
+            a(href="http://labs.ft.com/articles/ft-fastclick/") Fastclick
+            , etc
+
+        section
+          h1 But Now I'm 
+            span.orange STUCK!
+          h2 Getting 
+            span.orange Back
+          code.language-javascript
+            pre.
+              var navigateBackToAnotherPage = function(event) {
+                event.preventDefault();
+                var currentPage = document.querySelector(".current"),
+                  newPage = document.getElementById(this.hash.substring(1)),
+                newPage.className = "page left";
+                newPage.className ="page transition current";
+                currentPage.className = "page transition right";
+              };
+
+        section
+          h1 A  
+            span.orange Back 
+            span Button
+          h2.orange CSS
+          code.language-javascript
+            pre.
+              var previousPage;
+              var navigateBack = function(event) {
+                event.preventDefault();
+                if (previousPage) {
+                  var currentPage = document.querySelector(".current"),
+                    newPage = document.getElementById(previousPage),
+                    backButton = document.getElementById("backButton"),
+                    menuButton = document.getElementById("menuButton");
+                  menuButton.className = "button button-left menu";
+                  backButton.className = "button button-left back hidden";
+                  newPage.className = "page left";
+                  newPage.className ="page transition current";
+                  currentPage.className = "page transition right";
+                }
+              };
+              // Set previosPage to the element id of the previous page when navigating forward
+          hr
+          h3 Note: to go more than one level deep and back, make sure previousPage is more like an Array you can pop off one at a time
+
+
+        section
+          h1 End 
+            span.orange Result 
+            span *
+          img(src="images/final-app.png", width="300px")
+          a(href="http://jsbin.com/noneoftheabove/39/") http://jsbin.com/noneoftheabove/39/
+          h3 * I know it doesn't look like much, but it only took 2 hours...
+
+        section
+          h1.bullet
+            span.orange Extra 
+            span Credit
+          ul
+            li Slide Menu
+            li Navigating via the list
+            li Changing the title based on current page
+            li Modularisation / MVC 
+            li ???
+            li Profit
+
+        section
+          h1 Pure 
+            span.orange CSS  
+            span Frameworks
+          hr
+          hr
+          h2 TopCoat - 
+            a(href="http://topcoat.io") http://topcoat.io
+          h2 Bootstrap - 
+            a(href="http://getbootstrap.com") http://getbootstrap.com 
+
+        section
+          h1.orange.huge Thanks!
+          hr
+          h2 Feel free to ask me any PhoneGap / Cordova questions you may have as long as they have nothing to do with jQuery Mobile.
+          hr
+          hr
+          h2 Just kidding. *
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          hr
+          * I'm totally not kidding...
+
+
+      script(src='bower_components/bespoke.js/dist/bespoke.min.js')
+      script(src='bower_components/bespoke-bullets/dist/bespoke-bullets.min.js')
+      script(src='bower_components/bespoke-hash/dist/bespoke-hash.min.js')
+      script(src='bower_components/bespoke-state/dist/bespoke-state.min.js')
+      script(src='bower_components/prism/prism.js')
+      script(src='scripts/main.js')
